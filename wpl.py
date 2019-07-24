@@ -4,11 +4,17 @@ def main():
 
 
   arrayCentre = [147.215965, -41.547531]  # Lon, Lat
-
   blp, CA = blp_array_location(arrayCentre, rotation = 180.0)
-  kml_output(blp, CA)
 
-  print CA
+  arrayCentre = [147.215965, -41.547531]  # Lon, Lat
+  arc, az = map_2points(147.215414, -41.547638, 147.215606, -41.547849, degrees=True)
+  az -= 90
+
+  lon, lat = ll_arc_distance(arrayCentre[0], arrayCentre[1], 10.0 / 6371000.0, az, degrees=True)
+  arrayCentre = [lon, lat]
+  blp, CA = blp_array_location(arrayCentre, rotation = 180.0)
+
+  kml_output(blp, CA)
 
 
 
